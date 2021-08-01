@@ -1,13 +1,11 @@
-const config = require("./config");
-const mongoose = require("mongoose");
-module.exports = function () {
-	mongoose.set("debug", config.debug);
-	console.log(config.mongoUri);
-
-	const db = mongoose.connect(config.mongoUri).catch((e) => {
+import { mongoUri, debug } from "./config.js";
+import mongoose from "mongoose";
+export default function () {
+	mongoose.set("debug", debug);
+	console.log("🚀 ~ file: mongoose.js ~ line 8 ~ mongoUri", mongoUri);
+	const db = mongoose.connect(mongoUri).catch((e) => {
 		console.log("Can't connect to database.");
 	});
 
-	require("../app/models/post.model");
 	return db;
-};
+}

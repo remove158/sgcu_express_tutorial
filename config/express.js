@@ -1,13 +1,13 @@
-const express = require("express");
-
+import express from "express";
+import postRouter from "../app/routes/post.routes.js";
 const logger = (req, res, next) => {
 	console.log(req.method, req.originalUrl);
 	next();
 };
-module.exports = function () {
+export default function () {
 	const app = express();
 	app.use(express.json());
 	app.use(logger);
-	require("../app/routes/post.routes")(app);
+	app.use(postRouter);
 	return app;
-};
+}
