@@ -151,23 +151,22 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
 	// trim , required
 	firstName: { type: String, trim: true, required: true },
-	lastName: { type: String, trim: true, required: true },.
+	lastName: { type: String, trim: true, required: true },
 	// regex
-	email: { type : String, index : true, match : /.+\@.+\..+/},
+	email: { type: String, index: true, match: /.+\@.+\..+/ },
 	// enumurate
-	role: { type : String, index : true, enum : ["Admin","Owner","User"]},
+	role: { type: String, index: true, enum: ["Admin", "Owner", "User"] },
 	// custom validator
-	password : {
-		type : String,
-		validate : [
-			function(password){
+	password: {
+		type: String,
+		validate: [
+			function (password) {
 				// return true if valid , false if invalid
 				return password && password.length >= 6;
-			}
-			, "Password must be at least 6 characters"
-		]
-	}
-
+			},
+			"Password must be at least 6 characters",
+		],
+	},
 });
 
 mongoose.model("User", UserSchema);
